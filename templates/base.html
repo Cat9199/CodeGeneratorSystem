@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduCodeGenius</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="shortcut icon" href="{{ url_for('static',filename='images/logo.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/normalize.css') }}">
+<style>
+    .account a{
+        text-decoration:none;
+        color: #000;
+        display: flex;
+        margin: 10px 10px 0 0 ;
+    }
+</style>
+</head>
+
+<body dir="rtl">
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo" style="
+                display: contents;
+            ">
+                    <img src="{{ url_for('static',filename='images/logo.png') }}" style="    max-width: 100px;" alt="logo">
+                <h2>EduCodeGenius</h2>
+                </div>
+                <div class="nav-buttons" style="display: flex; align-items: center;">
+             {% if session.username %}
+                    <div class="account box" style="display: flex;" id="account" onclick="togglePopup()" style="display: flex;align-items: center;background: none; border: none;cursor: pointer;display: flex; align-items: center;">
+                       <a href="#popup1" class="iii" style="display: flex;align-items: center"> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#0009" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                        </svg><p style="margin: 0 10px 0 0;">مرحبا <strong>{{ session.username }}</strong></p>
+                    </a> </div><a href="/logout" class="login" style="margin: 0 10px 0 0; color:red;border:red 1px solid;">تسجيل الخروج</a>
+                    {% else %}
+                    <a href="/login" class="login">تسجيل الدخول</a>{% endif %}</div>
+            </nav>
+        </div>
+
+       
+    {% block content %} {% endblock %}
+</body>
+</html>

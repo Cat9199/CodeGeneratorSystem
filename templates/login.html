@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block content %}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/login.css') }}">
+<body style="background-image: url('https://raw.githubusercontent.com/MaMasoud/CodeGeneratorSystem/main/frontend/images/login-baskground.jpg');">
+
+<style>
+    .error{
+			color: #D8000C;
+			background-color: #FFBABA;
+            padding: 10px;
+			background-image: url('https://i.imgur.com/GnyDvKN.png');}
+</style>
+    <div class="overlay"></div>
+    <section class="login-form">
+        <div class="container">
+            {% if mess %}
+            <div class="error">اسم المستخدم او كلمت المرور غير صحيحة</div>
+            <br><br>
+            {% endif %}
+            <div class="box">
+                <h1>تسجيل الدخول</h1>
+                <form action="/login" method="POST">
+                    <div class="input-group">
+                      
+                        <input type="text" name="username" id="username" placeholder="اسم المستخدم" autofocus>
+
+                    </div>
+                    <div class="input-group">
+                        <input type="password" name="password" id="password" placeholder="كلمة المرور">
+                    </div>
+                    <div class="rememmber-me">
+                        <input type="checkbox" name="rememmber-me" id="rememmber-me">
+                        <label for="rememmber-me">تذكرني</label>
+                    </div>
+                    <div class="signin-submit">
+                        <input type="submit" value="تسجيل الدخول">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    {% endblock %}

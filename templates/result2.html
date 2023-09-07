@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,6 +36,7 @@
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 20px;
             justify-items: center;
+            margin: 20px 0 0 0;
         }
 
         .print-page img {
@@ -50,7 +52,7 @@
         .print-page::before {
             content: '';
             width: 1px;
-            background-color: #999; /* لون الخط */
+            background-color: #999;
             position: absolute;
             top: 10px;
             bottom: 10px;
@@ -91,7 +93,7 @@
                 grid-template-columns: repeat(4, 1fr);
                 gap: 10px;
                 justify-content: center;
-                margin-left: 10px; /* هامش من اليسار بحجم 10 بكسل */
+                margin-left: 10px;
             }
 
             .print-page img {
@@ -105,18 +107,19 @@
             }
 
             .print-page::before {
-                content: none; /* إزالة خط القطع في الطباعة */
+                content: none;
             }
 
             button {
                 display: none;
             }
-#imageCount{
-    display: none;
-}
-            /* تعريف الصفحة والهوامش المخصصة */
+
+            #imageCount {
+                display: none;
+            }
+
             @page {
-                margin: 10px; /* هوامش بحجم 10 بكسل على جميع الجوانب */
+                margin: 10px;
             }
         }
     </style>
@@ -131,33 +134,28 @@
             <img src="{{ url_for('uploaded_file', filename=filename) }}" alt="الصورة المعدلة">
             {% endfor %}
         </div>
-        <button onclick="printPage()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16">
-            <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
-            <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
-          </svg>طباعة</button>
+        <button onclick="printPage()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16">
+                <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
+                <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+            </svg>
+            طباعة
+        </button>
     </div>
     <script>
         function printPage() {
             window.print();
         }
-   
-    // Function to count images and update the count on the page
-    function updateImageCount() {
-        const imageCountElement = document.getElementById('imageCount');
-        const images = document.querySelectorAll('.print-page img');
-        const imageCount = images.length;
 
-        imageCountElement.textContent = `عدد الاكواد: ${imageCount}`;
-    }
+        function updateImageCount() {
+            const imageCountElement = document.getElementById('imageCount');
+            const images = document.querySelectorAll('.print-page img');
+            const imageCount = images.length;
 
-    // Call the function when the page loads
-    window.onload = updateImageCount;
+            imageCountElement.textContent = `عدد الاكواد: ${imageCount}`;
+        }
 
-    // Function to print the page
-    function printPage() {
-        window.print();
-    }
-
+        window.onload = updateImageCount;
 
     </script>
 </body>

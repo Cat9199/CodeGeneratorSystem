@@ -1,0 +1,45 @@
+
+{% extends 'base.html' %} {% block content %}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/create-account.css') }}">
+    <section class="add-user">
+        <div class="container">
+            <div class="box">
+                <h1>أنشاء مستخدم جديد</h1>
+                <form action="/adduser" method="POST">
+                    <div class="input-group">
+                        <label for="name">الاسم</label>
+                        <input type="text" name="name" id="name" placeholder="محمد محمود ..." autofocus>
+                    </div>
+                    <div class="input-group">
+                        <label for="username">اسم المستخدم</label>
+                        <input type="text" name="username" id="username" placeholder="mohamed123...." >
+                    </div>
+                    <div class="input-group">
+                        <label for="password">كلمة المرور</label>
+                        <input type="text" name="password" id="password" placeholder="كلمة المرور">
+                    </div>
+                    <div class="input-group">
+                        <label for="Host">Host</label>
+                        <input type="text" name="Host" id="Host" placeholder="10.0.0.1">
+                    </div>
+                    <div class="input-group">
+                        <label for="database">قواعد البيانات</label>
+                        <input type="text" name="database" id="database" placeholder="Qznv7UVBa2nnUB">
+                    </div>
+                    <div class="input-group">
+                        <label for="database-username">اسم المستخدم (قواعد البيانات)</label>
+                        <input type="text" name="database-username" id="database-username" placeholder="aG57v2YqGpepFc">
+                    </div>
+                    <div class="input-group">
+                        <label for="database-password">كلمة المرور (قواعد البيانات)</label>
+                        <input type="text" name="database-password" id="database-password" placeholder="?pc'DA9^.Z2?8">
+                    </div>
+                  
+                            <input type="submit" value="إنشاء الحساب" />
+                          </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    {% endblock %}

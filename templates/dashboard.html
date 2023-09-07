@@ -1,0 +1,82 @@
+{% extends 'base.html' %} {% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static',filename='css/dashboard.css') }}"
+/>
+
+<div class="overlay"></div>
+<section class="cards-section">
+  <div class="container">
+    <div class="cards">
+      <div class="card">
+        <div class="image">
+          <img
+            src="{{ url_for('static',filename='images/codes.svg') }}"
+            alt=""
+          />
+        </div>
+        <div class="content">
+          <a href="allc">
+            <h2>كل الاكواد</h2>
+          </a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="image">
+          <img
+            src="{{ url_for('static',filename='images/Generat.svg') }}"
+            alt=""
+          />
+        </div>
+        <div class="content">
+          <a href="/adduser">
+            <h2>أنشاء حسابات</h2>
+          </a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="image">
+          <img
+            src="{{ url_for('static',filename='images/hsabat.svg') }}"
+            alt=""
+          />
+        </div>
+        <div class="content">
+          <a href="/ac">
+            <h2>الحسابات</h2>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="code-table">
+  <div class="container">
+    <center><h2>جدول العمليات</h2></center>
+    <div class="box">
+       
+      <table class="table-codes">
+        <tr>
+          <th>رقم العملية</th>
+          <th>المستخدم</th>
+          <th>عدد الاكواد</th>
+          <th>سعر الاكواد</th>
+          <th>اجمالي السعر</th>
+           <th>التاريخ</th>
+        </tr>
+        {% for code in codes %}
+        <tr>
+          <td>{{ code.id }}</td>
+          <td>{{ code.username }}</td>
+          <td>{{ code.codenum }}</td>
+          <td>{{ code.codeprice }}L.E</td>
+      <td>{{ code.codenum * code.codeprice }}L.E</td>
+
+          <td>{{ code.date }}</td>
+        </tr>
+        {%endfor%}
+      </table>
+    </div>
+  </div>
+</section>
+{% endblock %}

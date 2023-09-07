@@ -1,0 +1,68 @@
+{% extends 'base.html' %} {% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+<link rel="stylesheet" href="{{ url_for('static',filename='css/rint.css') }}">
+<section class="print-codes">
+  <div class="container">
+    <div class="box">
+      <h1>طباعت الاكواد</h1>
+      <p id="imageCount">عدد الصور: 0</p>
+      <div class="print-page"  style="display: none;">
+        {% for filename in filenames %}
+        <img
+          src="{{ url_for('uploaded_file', filename=filename) }}"
+          alt="الصورة المعدلة"
+        />
+        {% endfor %}
+      </div>
+      <button onclick="exportToPDF()">تصدير إلى PDF</button>
+    </div>
+  </div>
+</section>
+<script>
+  function exportToPDF() {
+      const images = document.querySelectorAll('.print-page img');
+      const pdf = new jsPDF();
+      let pageWidth, pageHeight;
+
+      images.forEach((img, index) => {
+          const width = img.width;
+          const height = img.height;
+
+          if (index === 0) {
+              // Set the page size based on the first image's dimensions
+              pageWidth = width;
+              pageHeight = height;
+              pdf.addPage([pageWidth, pageHeight]);
+          } else {
+              // Add a new page with the same size as the first image
+              pdf.addPage([pageWidth, pageHeight]);
+          }
+
+          // Convert the image to a data URL
+          const canvas = document.createElement('canvas');
+          const context = canvas.getContext('2d');
+          canvas.width = width;
+          canvas.height = height;
+          context.drawImage(img, 0, 0, width, height);
+          const dataURL = canvas.toDataURL('image/jpeg', 1.0);
+
+          // Add the image to the PDF
+          pdf.addImage(dataURL, 'JPEG', 0, 0, pageWidth, pageHeight);
+      });
+
+      // Save the PDF file
+      pdf.save('images.pdf');
+  }
+
+  function updateImageCount() {
+      const imageCountElement = document.getElementById('imageCount');
+      const images = document.querySelectorAll('.print-page img');
+      const imageCount = images.length;
+
+      imageCountElement.textContent = `عدد الصور: ${imageCount}`;
+  }
+
+  window.onload = updateImageCount;
+</script>
+
+{% endblock %}

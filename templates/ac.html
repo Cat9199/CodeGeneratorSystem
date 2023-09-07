@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% block content %}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/all-codes.css') }}">
+    <div class="overlay"></div>
+    <section class="code-table">
+        <div class="container"><br><br>
+            <center><h2>الحسابات</h2></center>
+            <div class="box">
+                <table class="table-codes">
+                    <tr>
+                      <th>رقم العملية</th>
+                      <th>المستخدم</th>
+                      <th>عدد الاكواد</th>
+                      <th>سعر الاكواد</th>
+                      <th>اجمالي السعر</th>
+                       <th>التاريخ</th>
+                       <th></th>
+                    </tr>
+                    {% for code in codes %}
+                    <tr>
+                      <td>{{ code.id }}</td>
+                      <td>{{ code.username }}</td>
+                      <td>{{ code.codenum }}</td>
+                      <td>{{ code.codeprice }}L.E</td>
+                      <td>{{ code.codenum * code.codeprice }}L.E</td>
+                      <td>{{ code.date }}</td>
+                      <th>
+                        <center>
+                        <a href="/okk/{{ code.id }}" style="text-decoration:none;color: black;" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-credit-card-2-back-fill" viewBox="0 0 16 16">
+                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0V4zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-2zM0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1H0z"/>
+                      </svg></a>
+                    </center>
+                    </th>
+                    </tr>
+                    {%endfor%}
+                  </table>
+            </div>
+        </div>
+    </section>
+ {% endblock %}

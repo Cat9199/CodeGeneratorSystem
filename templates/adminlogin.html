@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block content %}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/login.css') }}">
+<body style="background-image: url({{ url_for('static', filename='images/bg.jpg') }});">
+
+<style>
+    .error{
+			color: #D8000C;
+			background-color: #FFBABA;
+            padding: 10px;
+			background-image: url('https://i.imgur.com/GnyDvKN.png');}
+</style>
+    <div class="overlay"></div>
+    <section class="login-form">
+        <div class="container">
+            {% if mess %}
+            <div class="error">اسم المستخدم او كلمت المرور غير صحيحة</div>
+            <br><br>
+            {% endif %}
+            <div class="box">
+                <h1>تسجيل الدخول</h1>
+                <form action="/loginadmin" method="POST">
+                    <div class="input-group">
+                        <input type="text" name="user" id="username" placeholder="اسم المستخدم" autofocus>
+                    </div>
+                    <div class="signin-submit">
+                        <input type="submit" value="تسجيل الدخول">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    {% endblock %}

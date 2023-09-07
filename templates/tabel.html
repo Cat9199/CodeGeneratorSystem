@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block content %}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/all-codes.css') }}">
+    <div class="overlay"></div>
+    <section class="code-table">
+        <div class="container"><br><br>
+            <center><h2>كل الاكواد</h2></center>
+            <div class="box">
+                <table class="table-codes">
+                    <tr>
+                      <th>ID</th>
+                      <th>الكود</th>
+                      <th>السعر</th>
+                      <th>التاريخ</th>
+                      <th>الحساب</th>
+                    </tr>
+                    {% for code in codes %}
+                    <tr>
+                        <td>{{ code.id }}</td>
+                        <td>{{ code.code }}</td>
+                        <td>{{ code.price }}L.E</td>
+                        <td>{{ code.date }}</td>
+                        <td>{{ code.username }}</td>
+                    </tr>
+                    {% endfor %}
+                  </table>
+            </div>
+        </div>
+    </section>
+ {% endblock %}

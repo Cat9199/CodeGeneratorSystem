@@ -1,202 +1,25 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تطبيق إنشاء صور نصية</title>
-    <style>
-        /* تنسيق الصفحة بشكل عام */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
 
-        .container {
-            max-width: 600px;
-            padding: 40px;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        h1 {
-            color: #333333;
-            margin-bottom: 20px;
-        }
-
-        label {
-            font-weight: bold;
-            color: #444444;
-            display: inline-block;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-
-        /* تنسيق حقول اختيار الملفات */
-        .file-input {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-  
-        }
-
-        .file-icon {
-            fill: #666666;
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
-        }
-
-        input[type="file"] {
-            display: none;
-        }
-
-        .file-label {
-            border: 2px dashed #cccccc;
-            border-radius: 6px;
-            padding: 15px;
-            background-color: #f7f7f7;
-            cursor: pointer;
-            transition: border-color 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            width: 80%;
-        }
-
-        .file-label:hover {
-            border-color: #007bff;
-        }
-
-        /* تنسيق حقول الإدخال الأخرى */
-        input[type="number"], input[type="color"], input[type="submit"] {
-            width: 60px;
-            text-align: center;
-            padding: 8px;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            font-size: 14px;
-            margin: 0 5px;
-        }
-
-        input[type="number"] {
-            width: 40px;
-        }
-
-        input[type="color"] {
-            padding: 0;
-            border: none;
-            width: 32px;
-            height: 32px;
-            cursor: pointer;
-            border-radius: 50%;
-        }
-
-        /* تنسيق زر الإرسال */
-/* تنسيق زر الإرسال */
-input[type="submit"] {
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 25px;
-    /* تغيير شكل الزر عند تمرير المؤشر عليه */
-    transform: translateY(0);
-    width: 50%;
-}
-
-input[type="submit"]:hover {
-    background-color: #0056b3;
-    /* تحريك الزر قليلًا عند تمرير المؤشر عليه */
-    transform: translateY(-2px);
-    /* إضافة تأثير ظل للزر */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-        /* تنسيق الملاحظة التوجيهية */
-        .instructions {
-            font-size: 12px;
-            color: #888888;
-            margin-top: 10px;
-        }
-    </style>
-    <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const fileInputs = document.querySelectorAll(".file-input");
-
-    fileInputs.forEach(function (fileInput) {
-        const label = fileInput.querySelector(".file-label");
-        const input = fileInput.querySelector("input[type=file]");
-
-        input.addEventListener("change", function (e) {
-            const file = e.target.files[0];
-            label.textContent = file.name;
-            // تغيير لون البوردر إلى الأخضر بعد اختيار الملف
-            label.style.borderColor = "#00cc66";
-        });
-
-        label.addEventListener("dragover", function (e) {
-            e.preventDefault();
-            fileInput.classList.add("dragover");
-        });
-
-        label.addEventListener("dragleave", function () {
-            fileInput.classList.remove("dragover");
-        });
-
-        label.addEventListener("drop", function (e) {
-            e.preventDefault();
-            fileInput.classList.remove("dragover");
-
-            const file = e.dataTransfer.files[0];
-            input.files = e.dataTransfer.files;
-
-            label.textContent = file.name;
-            // تغيير لون البوردر إلى الأخضر بعد سحب وإفلات الملف
-            label.style.borderColor = "#00cc66";
-        });
-    });
-});
-
-    </script>
-</head>
-<body>
-    <div class="container">
-        <h1>مُولِّد الاكواد</h1>
-        <form method="POST" action="/process" enctype="multipart/form-data">
-            <div class="file-input">
-               
-                 <label class="file-label" for="img"><strong>سحب وإفلات أو اختيار صورة<svg style="margin: 0  0 0 10px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-image" viewBox="0 0 16 16">
-                    <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                    <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
-                  </svg></strong></label>
-                <input type="file" name="img" accept=".jpg, .jpeg, .png, .gif" id="img"> <label for="img">اختر صورة</label>
+   
+   {% extends 'base.html' %} {% block content %}
+   <link rel="stylesheet" href="{{ url_for('static',filename='css/landing.css') }}">
+   <section class="landing">
+        <div class="container">
+            <div class="landing-content">
+                <div class="landing-text">
+                    <h1>EduCodeGenius</h1>
+                    <p>
+                        "منصتنا هي حلاً تكنولوجيًا مبتكرًا للتعليم عبر الإنترنت. نقدم أكوادًا مخصصة للمحاضرات التعليمية على منصات متعددة، حيث تتيح للمدرسين والمتعلمين إنشاء ومشاركة محتوى تعليمي متقدم بسهولة. بفضل تقنياتنا الذكية، يمكنك تخصيص الأكواد وإدراجها في منصاتك التعليمية المفضلة بسرعة ودقة. انضم إلى مجتمع التعليم الرقمي واستفد من سهولة الوصول إلى المعرفة."            </p>
+                    {% if session.username %}
+                    <a href="/createcode" class="landing-login">أنشئ الاكواد</a>
+                    {% else %}
+                    <a href="/login" class="landing-login">سجل الان</a>
+                    {% endif %}
+                </div>
+                <div class="landing-img">
+                    <img src="{{ url_for('static',filename='images/Privacy policy-rafiki.svg') }}" alt="logo">
+                </div>
             </div>
-            <div class="file-input">
-                  <label class="file-label" for="csv"><strong>سحب وإفلات أو اختيار ملف CSV<svg style="margin: 0  0 0 10px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-spreadsheet" viewBox="0 0 16 16">
-                    <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V9H3V2a1 1 0 0 1 1-1h5.5v2zM3 12v-2h2v2H3zm0 1h2v2H4a1 1 0 0 1-1-1v-1zm3 2v-2h3v2H6zm4 0v-2h3v1a1 1 0 0 1-1 1h-2zm3-3h-3v-2h3v2zm-7 0v-2h3v2H6z"/>
-                  </svg> </strong> </label>
-                <input type="file" name="csv" accept=".csv" id="csv"><label for="csv"><strong>اختر ملف CSV:</strong></label>
-            </div>
-            <label for="font_size">حجم الخط:</label>
-            <input type="number" name="font_size" id="font_size" value="20">
-            <label for="font_color">لون الخط:</label>
-            <input type="color" name="font_color" id="font_color" value="#000000">
-            <label for="code_position">موقع النص (الرأسي):</label>
-            <input type="number" name="code_position" id="code_position" value="130"><br>
-            <input type="submit" value="إنشاء الاكواد">
-        </form>
-    </div>
-</body>
-</html>
+        </div>
+    </section>
+
+    {% endblock %}
