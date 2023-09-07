@@ -3,7 +3,7 @@
     --main-color-light: #ffb9237c;
 }
 body{
-    background-image: url(../images/login-baskground.jpg);
+    background-image: url(../images/bg.jpg);
     background-size: cover;
     background-position: center;
 }
@@ -28,6 +28,9 @@ body{
     justify-content: center;
     align-items: center;
     z-index: 1;
+    background-image: url(../images/bg.jpg);
+    background-size: cover;
+    background-position: center;
 }
 .login-form .box{
     max-width: 500px;
