@@ -126,7 +126,7 @@ def process_random_numbers(img_path, font_size, font_color, code_position, host,
             date=gtime()
         )
         db.session.add(new_code)
-        font = ImageFont.truetype("Pillow/Tests/fonts/FreeMonoBold.ttf", font_size)
+        font = ImageFont.truetype("fonts/FreeMonoBold.ttf", font_size)
         y_position = code_position
         draw.text((100, y_position), random_code, font=font, fill=font_color)
         output_filename = f'output_{index}.jpg'
@@ -219,5 +219,5 @@ if __name__ == '__main__':
         os.makedirs(UPLOAD_FOLDER)
     with app.app_context():
         db.create_all()
-    app.run(debug=True,host='0.0.0.0')
+    app.run(debug=False,port=8002)
 
