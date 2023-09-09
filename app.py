@@ -219,5 +219,5 @@ if __name__ == '__main__':
         os.makedirs(UPLOAD_FOLDER)
     with app.app_context():
         db.create_all()
-    app.run(debug=False,port=8002)
+    app.run(debug=False, port=8002, threaded=True, processes=4, timeout=1000)
 
